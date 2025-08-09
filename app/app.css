@@ -1,15 +1,315 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Noto Sans SC", "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-slate-900;
+  font-family: "Noto Sans SC", "Inter", ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+/* 星空背景效果 */
+.stars, .twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.stars {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.9), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: zoom 20s alternate infinite;
+}
+
+.twinkling {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(1px 1px at 50px 50px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 100px 100px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 150px 150px, rgba(255,255,255,0.7), transparent);
+  background-size: 300px 300px;
+  animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1.0, 1.0);
+  }
+  to {
+    transform: scale(1.05, 1.05);
+  }
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(147, 51, 234, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(147, 51, 234, 0.7);
+}
+
+/* 烟火动画效果 */
+.firework {
+  animation: firework-rise 2s ease-out forwards;
+}
+
+@keyframes firework-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+/* 共鸣效果 */
+.resonance-pulse {
+  animation: pulse-glow 1.5s ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(251, 191, 36, 0.1);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+    transform: scale(1);
+  }
+}
+
+/* 文字淡入效果 */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 按钮悬浮效果 */
+.button-float:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 加载动画 */
+.loading-dots {
+  animation: loading-dots 1.5s infinite linear;
+}
+
+@keyframes loading-dots {
+  0%, 20% {
+    content: ".";
+  }
+  40% {
+    content: "..";
+  }
+  60%, 100% {
+    content: "...";
+  }
+}
+
+/* 心跳动画 */
+.heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* 闪烁效果 */
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 消息卡片悬浮效果 */
+.message-card {
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(255,255,255,0.05) 100%);
+}
+
+.message-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.15);
+  background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(255,255,255,0.1) 100%);
+}
+
+/* 输入框焦点效果 */
+.input-focus {
+  position: relative;
+}
+
+.input-focus:focus-within::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-rotate 3s linear infinite;
+}
+
+@keyframes gradient-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 按钮波纹效果 */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:hover:before {
+  width: 300px;
+  height: 300px;
+}
+
+/* 状态指示器动画 */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+.status-indicator.online::before {
+  background: rgba(34, 197, 94, 0.3);
+}
+
+.status-indicator.offline::before {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
   }
 }
