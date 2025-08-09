@@ -73,51 +73,63 @@ export default function EchoChamber() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 page-transition">
       {/* 背景星空效果 */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="stars"></div>
         <div className="twinkling"></div>
+        <div className="particles"></div>
       </div>
 
       {/* 顶部导航 */}
       <div className="relative z-10 p-6">
         <Link 
           to="/" 
-          className="inline-flex items-center text-white/70 hover:text-white transition-colors duration-300"
+          className="inline-flex items-center text-white/70 hover:text-white transition-all duration-300 group glow-effect"
         >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          返回主页
+          <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-colors duration-300 mr-3">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </div>
+          <span className="font-light tracking-wide">返回主页</span>
         </Link>
       </div>
 
       {/* 主要内容区域 */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-6 pb-20">
-        <div className="w-full max-w-4xl space-y-8">
+      <div className="relative z-10 flex flex-col items-center justify-center px-6 pb-20 pt-8">
+        <div className="w-full max-w-4xl space-y-12">
           {/* 标题 */}
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-light text-white/90">
+          <div className="text-center space-y-6 fade-in">
+            <h1 className="text-5xl md:text-6xl font-light text-white/95 text-glow">
               情绪树洞
             </h1>
-            <p className="text-lg text-purple-200/70">
-              写下你不能对他人诉说的思绪，选择封存或化为灰烬
+            <p className="text-xl text-purple-200/80 font-light leading-relaxed max-w-2xl mx-auto">
+              写下你不能对他人诉说的思绪<br/>
+              <span className="text-purple-300/70">选择封存或化为灰烬</span>
             </p>
+            <div className="flex justify-center space-x-6 mt-8">
+              <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full twinkle"></div>
+              <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full twinkle" style={{animationDelay: '0.5s'}}></div>
+              <div className="w-2 h-2 bg-gradient-to-r from-pink-400 to-red-500 rounded-full twinkle" style={{animationDelay: '1s'}}></div>
+            </div>
           </div>
 
           {/* 写作区域 */}
-          <div className="relative">
-            <textarea
-              value={content}
-              onChange={handleContentChange}
-              placeholder="在这里倾诉你的内心独白..."
-              className="w-full h-96 p-6 bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl text-white/90 placeholder-white/40 resize-none focus:outline-none focus:border-purple-400/50 focus:bg-black/30 transition-all duration-300 text-lg leading-relaxed"
-              disabled={isProcessing}
-            />
+          <div className="relative fade-in" style={{animationDelay: '0.3s'}}>
+            <div className="glass-morphism rounded-3xl p-1">
+              <textarea
+                value={content}
+                onChange={handleContentChange}
+                placeholder="在这里倾诉你的内心独白..."
+                className="w-full h-96 p-8 bg-transparent border-none text-white/95 placeholder-white/50 resize-none focus:outline-none text-lg leading-relaxed font-light"
+                disabled={isProcessing}
+                style={{fontFamily: 'inherit'}}
+              />
+            </div>
             
             {/* 字数统计 */}
-            <div className="absolute bottom-4 right-6 text-sm text-white/50">
+            <div className="absolute bottom-6 right-8 text-sm text-white/60 bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
               {content.length} 字
             </div>
           </div>
@@ -155,12 +167,24 @@ export default function EchoChamber() {
 
           {/* 消息提示 */}
           {showMessage && (
-            <div className="text-center">
-              <p className="text-lg text-yellow-300/80 fade-in">
-                {showMessage}
-              </p>
+            <div className="text-center space-y-4">
+              <div className="inline-flex items-center space-x-3 px-6 py-3 glass-morphism rounded-full glow-effect">
+                <div className="w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-pulse"></div>
+                <p className="text-lg text-yellow-300/90 font-light tracking-wide fade-in">
+                  {showMessage}
+                </p>
+              </div>
             </div>
           )}
+
+          {/* 底部装饰 */}
+          <div className="flex justify-center space-x-6 opacity-40 mt-16">
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-400 to-transparent twinkle"></div>
+            <div className="w-px h-12 bg-gradient-to-b from-transparent via-blue-400 to-transparent twinkle" style={{animationDelay: '1s'}}></div>
+            <div className="w-px h-20 bg-gradient-to-b from-transparent via-indigo-400 to-transparent twinkle" style={{animationDelay: '2s'}}></div>
+            <div className="w-px h-8 bg-gradient-to-b from-transparent via-purple-300 to-transparent twinkle" style={{animationDelay: '0.5s'}}></div>
+            <div className="w-px h-14 bg-gradient-to-b from-transparent via-pink-400 to-transparent twinkle" style={{animationDelay: '1.5s'}}></div>
+          </div>
         </div>
       </div>
     </div>

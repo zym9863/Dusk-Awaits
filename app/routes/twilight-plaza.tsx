@@ -107,52 +107,55 @@ export default function TwilightPlaza() {
   }, [isOpen]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 page-transition">
       {/* 背景星空效果 */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="stars"></div>
         <div className="twinkling"></div>
+        <div className="particles"></div>
       </div>
 
       {/* 顶部导航 */}
       <div className="relative z-10 p-6">
         <Link 
           to="/" 
-          className="inline-flex items-center text-white/70 hover:text-white transition-colors duration-300"
+          className="inline-flex items-center text-white/70 hover:text-white transition-all duration-300 group glow-effect"
         >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          返回主页
+          <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-colors duration-300 mr-3">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </div>
+          <span className="font-light tracking-wide">返回主页</span>
         </Link>
       </div>
 
       {/* 主要内容 */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 pb-20">
         {/* 标题和状态 */}
-        <div className="text-center space-y-6 mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-white/90">
+        <div className="text-center space-y-8 mb-16 fade-in">
+          <h1 className="text-5xl md:text-6xl font-light text-white/95 text-glow">
             夜幕广场
           </h1>
-          <div className="space-y-2">
-            <p className="text-lg text-purple-200/70">
+          <div className="space-y-4">
+            <p className="text-xl text-purple-200/80 font-light tracking-wide">
               {currentTime.toLocaleString('zh-CN')}
             </p>
             {isOpen ? (
-              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-500/20 border border-green-400/30 rounded-full">
-                <div className="w-2 h-2 bg-green-400 rounded-full status-indicator online"></div>
-                <span className="text-green-300">广场已开放</span>
+              <div className="inline-flex items-center space-x-3 px-6 py-3 glass-morphism rounded-full glow-effect">
+                <div className="w-3 h-3 bg-green-400 rounded-full status-indicator online animate-pulse"></div>
+                <span className="text-green-300 font-light tracking-wide text-lg">广场已开放</span>
               </div>
             ) : (
-              <div className="space-y-2">
-                <div className="inline-flex items-center space-x-2 px-4 py-2 bg-red-500/20 border border-red-400/30 rounded-full">
-                  <div className="w-2 h-2 bg-red-400 rounded-full status-indicator offline"></div>
-                  <span className="text-red-300">广场未开放</span>
+              <div className="space-y-3">
+                <div className="inline-flex items-center space-x-3 px-6 py-3 glass-morphism rounded-full">
+                  <div className="w-3 h-3 bg-red-400 rounded-full status-indicator offline animate-pulse"></div>
+                  <span className="text-red-300 font-light tracking-wide text-lg">广场未开放</span>
                 </div>
-                <p className="text-sm text-white/50">
+                <p className="text-sm text-white/60 font-light">
                   开放时间：每日 19:00 - 24:00
                 </p>
-                <p className="text-sm text-yellow-300/70">
+                <p className="text-base text-yellow-300/80 font-light">
                   下次开放：{TimeUtils.getNextOpenTime()}
                 </p>
               </div>
@@ -186,9 +189,16 @@ export default function TwilightPlaza() {
                   <button
                     onClick={handleSubmitMessage}
                     disabled={!newMessage.trim() || newMessage.length > 50 || isSubmitting}
-                    className="px-6 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full hover:from-yellow-400 hover:to-orange-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ripple button-float"
+                    className="px-8 py-3 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white rounded-full hover:from-yellow-400 hover:via-orange-400 hover:to-red-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 ripple button-float glow-effect shadow-lg shadow-orange-500/30"
                   >
-                    {isSubmitting ? "发布中..." : "点亮烟火"}
+                    <div className="flex items-center space-x-2">
+                      <div className={`p-1 rounded-full bg-white/20 ${isSubmitting ? 'animate-spin' : ''}`}>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                      </div>
+                      <span className="font-light tracking-wide">{isSubmitting ? "发布中..." : "点亮烟火"}</span>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -234,21 +244,42 @@ export default function TwilightPlaza() {
             </div>
           </div>
         ) : (
-          <div className="text-center py-20">
-            <div className="space-y-6">
-              <div className="w-24 h-24 mx-auto bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                <svg className="w-12 h-12 text-purple-300/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center py-20 fade-in">
+            <div className="space-y-8">
+              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center glow-effect">
+                <svg className="w-16 h-16 text-purple-300/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <div className="space-y-2">
-                <p className="text-xl text-white/70">夜幕尚未降临</p>
-                <p className="text-white/50">
+              <div className="space-y-4">
+                <p className="text-2xl text-white/80 font-light text-glow">夜幕尚未降临</p>
+                <p className="text-white/60 leading-relaxed font-light">
                   等不到天黑，烟火不会太完美<br/>
-                  请在 19:00 - 24:00 时段回来
+                  请在 <span className="text-yellow-300/80">19:00 - 24:00</span> 时段回来
                 </p>
               </div>
+              {/* 底部装饰 */}
+              <div className="flex justify-center space-x-8 mt-12 opacity-30">
+                <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-400 to-transparent twinkle"></div>
+                <div className="w-px h-12 bg-gradient-to-b from-transparent via-blue-400 to-transparent twinkle" style={{animationDelay: '1s'}}></div>
+                <div className="w-px h-20 bg-gradient-to-b from-transparent via-indigo-400 to-transparent twinkle" style={{animationDelay: '2s'}}></div>
+                <div className="w-px h-8 bg-gradient-to-b from-transparent via-purple-300 to-transparent twinkle" style={{animationDelay: '0.5s'}}></div>
+                <div className="w-px h-14 bg-gradient-to-b from-transparent via-pink-400 to-transparent twinkle" style={{animationDelay: '1.5s'}}></div>
+              </div>
             </div>
+          </div>
+        )}
+
+        {/* 底部装饰 - 仅在广场开放时显示 */}
+        {isOpen && (
+          <div className="flex justify-center space-x-6 opacity-20 mt-20 fade-in" style={{animationDelay: '0.6s'}}>
+            <div className="w-px h-24 bg-gradient-to-b from-transparent via-yellow-400 to-transparent twinkle"></div>
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-orange-400 to-transparent twinkle" style={{animationDelay: '1s'}}></div>
+            <div className="w-px h-32 bg-gradient-to-b from-transparent via-red-400 to-transparent twinkle" style={{animationDelay: '2s'}}></div>
+            <div className="w-px h-12 bg-gradient-to-b from-transparent via-pink-400 to-transparent twinkle" style={{animationDelay: '0.5s'}}></div>
+            <div className="w-px h-20 bg-gradient-to-b from-transparent via-purple-400 to-transparent twinkle" style={{animationDelay: '1.5s'}}></div>
+            <div className="w-px h-8 bg-gradient-to-b from-transparent via-blue-400 to-transparent twinkle" style={{animationDelay: '0.8s'}}></div>
+            <div className="w-px h-28 bg-gradient-to-b from-transparent via-green-400 to-transparent twinkle" style={{animationDelay: '2.5s'}}></div>
           </div>
         )}
       </div>
