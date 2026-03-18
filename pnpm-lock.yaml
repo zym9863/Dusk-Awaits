@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@react-router/node':
-        specifier: ^7.9.4
-        version: 7.9.4(react-router@7.12.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)
+        specifier: ^7.9.5
+        version: 7.9.5(react-router@7.12.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)
       '@react-router/serve':
         specifier: ^7.7.1
         version: 7.8.0(react-router@7.12.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)
@@ -440,11 +440,11 @@ packages:
       typescript:
         optional: true
 
-  '@react-router/node@7.9.4':
-    resolution: {integrity: sha512-sdeDNRaqAB71BR2hPlhcQbPbrXh8uGJUjLVc+NpRiPsQbv6B8UvIucN4IX9YGVJkw3UxVQBn2vPSwxACAck32Q==}
+  '@react-router/node@7.9.5':
+    resolution: {integrity: sha512-3mDd32mXh3gEkG0cLPnUaoLkY1pApsTPqn7O1j+P8aLf997uYz5lYDjt33vtMhaotlRM0x+5JziAKtz/76YBpQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      react-router: 7.9.4
+      react-router: 7.9.5
       typescript: ^5.1.0
     peerDependenciesMeta:
       typescript:
@@ -1496,8 +1496,8 @@ packages:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
     engines: {node: '>=6'}
 
-  tar@7.5.10:
-    resolution: {integrity: sha512-8mOPs1//5q/rlkNSPcCegA6hiHJYDmSLEI8aMH/CdSQJNWztHC9WHNam5zdQlfpTwB9Xp7IBEsHfV5LKMJGVAw==}
+  tar@7.5.11:
+    resolution: {integrity: sha512-ChjMH33/KetonMTAtpYdgUFr0tbz69Fp2v7zWxQfYZX4g5ZN2nOBXm1R2xyA+lMIKrLKIoKAwFj93jE/avX9cQ==}
     engines: {node: '>=18'}
 
   tinyglobby@0.2.15:
@@ -2068,7 +2068,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.2
 
-  '@react-router/node@7.9.4(react-router@7.12.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)':
+  '@react-router/node@7.9.5(react-router@7.12.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)':
     dependencies:
       '@mjackson/node-fetch-server': 0.2.0
       react-router: 7.12.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -2215,7 +2215,7 @@ snapshots:
   '@tailwindcss/oxide@4.1.11':
     dependencies:
       detect-libc: 2.0.4
-      tar: 7.5.10
+      tar: 7.5.11
     optionalDependencies:
       '@tailwindcss/oxide-android-arm64': 4.1.11
       '@tailwindcss/oxide-darwin-arm64': 4.1.11
@@ -3072,7 +3072,7 @@ snapshots:
 
   tapable@2.2.2: {}
 
-  tar@7.5.10:
+  tar@7.5.11:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
